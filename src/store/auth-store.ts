@@ -6,7 +6,7 @@ import { User } from "@/lib/interfaces";
 class AuthStore {
   user?: User = undefined;
   token?: string = undefined;
-  isAuthenticated?: boolean = undefined;
+  isAuthenticated?: boolean = false;
   isRefreshing?: boolean = false;
 
   constructor() {

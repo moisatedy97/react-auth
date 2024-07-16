@@ -26,3 +26,8 @@ export interface User {
   linkedinProfileUrl: string;
   instagramProfileUrl: string;
 }
+
+export interface LoginResponse {
+  user: User;
+  token: string;
+}
