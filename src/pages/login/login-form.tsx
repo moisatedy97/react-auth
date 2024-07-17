@@ -14,6 +14,7 @@ import { LoginResponse } from "@/lib/interfaces";
 
 import { formSchema } from "../login";
 import logo from "../../assets/logo.svg";
+import { authStore } from "@/store/auth-store";
 
 function LoginForm({
   form,
@@ -24,17 +25,25 @@ function LoginForm({
 }): React.JSX.Element {
   const mutation = useMutation({
     mutationFn: async (formData: z.infer<typeof formSchema>) => {
-      const { data } = await axiosInstance.get<LoginResponse>("/auth/login", {
+      const response = await axiosInstance.get<LoginResponse>("/auth/login", {
         params: {
           email: formData.email,
           password: formData.password
         }
       });
 
-      return data;
+      return response;
     },
-    onSuccess: () => {
-      setShowOtpForm(true);
+    onSuccess: (response) => {
+      if (response.status === 206) {
+        setShowOtpForm(true);
+      } else {
+        const { data } = response;
+
+        authStore.authenticateUser(data.user, data.token);
+
+        toast.success("Successfully logged in!");
+      }
     },
     onError: (error: AxiosError) => {
       toast.error(

@@ -26,16 +26,18 @@ function OtpForm({
   const [value, setValue] = React.useState("");
   const mutation = useMutation({
     mutationFn: async (formData: z.infer<typeof formSchema>) => {
-      const { data } = await axiosInstance.get<LoginResponse>("/auth/login", {
+      const response = await axiosInstance.get<LoginResponse>("/auth/login", {
         params: {
           email: formData.email,
           otp: value
         }
       });
 
-      return data;
+      return response;
     },
-    onSuccess: (data) => {
+    onSuccess: (response) => {
+      const { data } = response;
+
       setShowOtpForm(false);
       authStore.authenticateUser(data.user, data.token);
 
