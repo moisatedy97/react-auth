@@ -14,6 +14,7 @@ import { LoginResponse } from "@/lib/interfaces";
 import { authStore } from "@/store/auth-store";
 
 import { formSchema } from "../login";
+import logo from "../../assets/logo.svg";
 
 function OtpForm({
   form,
@@ -65,8 +66,11 @@ function OtpForm({
   return (
     <div className="flex items-center justify-center py-3 lg:py-12">
       <div className="mx-auto grid w-[350px] gap-6">
-        <div className="grid gap-2 text-center">
-          <h1 className="text-3xl font-bold">Check OTP</h1>
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between text-center">
+            <h1 className="text-3xl font-bold">Check OTP</h1>
+            <img src={logo} alt="logo" className="size-12" />
+          </div>
           <p className="text-muted-foreground text-balance">Check your email for the OTP code</p>
         </div>
         <div className="flex flex-col items-center gap-6">

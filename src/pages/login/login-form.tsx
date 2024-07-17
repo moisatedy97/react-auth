@@ -13,6 +13,7 @@ import { axiosInstance } from "@/lib/axios-interceptor";
 import { LoginResponse } from "@/lib/interfaces";
 
 import { formSchema } from "../login";
+import logo from "../../assets/logo.svg";
 
 function LoginForm({
   form,
@@ -52,8 +53,11 @@ function LoginForm({
   return (
     <div className="flex items-center justify-center py-3 lg:py-12">
       <div className="mx-auto grid w-[350px] gap-6">
-        <div className="grid gap-2 text-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between text-center">
+            <h1 className="text-3xl font-bold">Login</h1>
+            <img src={logo} alt="logo" className="size-12" />
+          </div>
           <p className="text-muted-foreground text-balance">Enter your email below to login to your account</p>
         </div>
         <Form {...form}>
