@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "ax
 import { authStore } from "@/store/auth-store";
 
 import { User } from "./interfaces";
+import { toast } from "sonner";
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: "http://localhost:8081",
@@ -53,9 +54,15 @@ axiosInstance.interceptors.response.use(
           }
         } else {
           authStore.logoutUser();
+
+          return Promise.reject(error);
         }
       }
     }
+
+    // This means the server is basically down
+    authStore.logoutUser();
+    toast.error("Sorry! Something went wrong. Please try again.");
 
     return Promise.reject(error);
   }
