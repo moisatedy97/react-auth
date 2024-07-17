@@ -8,7 +8,6 @@ import { z } from "zod";
 
 import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { axiosInstance } from "@/lib/axios-interceptor";
 import { LoginResponse } from "@/lib/interfaces";
@@ -64,32 +63,34 @@ function OtpForm({
   }, [value]);
 
   return (
-    <Card className="mx-auto">
-      <CardHeader>
-        <CardTitle className="text-2xl">Check OTP</CardTitle>
-        <CardDescription>Check your email for the OTP code</CardDescription>
-      </CardHeader>
-      <CardContent className="flex w-[28rem] flex-col items-center justify-center gap-6">
-        <TimerLoader setShowOtpForm={setShowOtpForm} />
-        <InputOTP
-          value={value}
-          onChange={(value) => setValue(value)}
-          maxLength={4}
-          pattern={REGEXP_ONLY_DIGITS}
-          autoFocus={true}
-        >
-          <InputOTPGroup className="w-full">
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-        </InputOTP>
-        <Button type="submit" className="w-full" onClick={handleSubmit}>
-          {mutation.isLoading ? <Loader /> : "Submit"}
-        </Button>
-      </CardContent>
-    </Card>
+    <div className="flex items-center justify-center py-3 lg:py-12">
+      <div className="mx-auto grid w-[350px] gap-6">
+        <div className="grid gap-2 text-center">
+          <h1 className="text-3xl font-bold">Check OTP</h1>
+          <p className="text-muted-foreground text-balance">Check your email for the OTP code</p>
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <TimerLoader setShowOtpForm={setShowOtpForm} />
+          <InputOTP
+            value={value}
+            onChange={(value) => setValue(value)}
+            maxLength={4}
+            pattern={REGEXP_ONLY_DIGITS}
+            autoFocus={true}
+          >
+            <InputOTPGroup className="w-full">
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+              <InputOTPSlot index={3} />
+            </InputOTPGroup>
+          </InputOTP>
+          <Button type="submit" className="w-full" onClick={handleSubmit}>
+            {mutation.isLoading ? <Loader /> : "Submit"}
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }
 

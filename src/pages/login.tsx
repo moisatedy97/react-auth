@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+import rpaLight from "@/assets/rpa-light.png";
+
 import LoginForm from "./login/login-form";
 import OtpForm from "./login/otp-form";
 
@@ -22,12 +24,17 @@ function Login(): React.JSX.Element {
   const [showOtpForm, setShowOtpForm] = React.useState<boolean>(false);
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      {showOtpForm ? (
-        <OtpForm form={form} setShowOtpForm={setShowOtpForm} />
-      ) : (
-        <LoginForm form={form} setShowOtpForm={setShowOtpForm} />
-      )}
+    <div className="h-full overflow-auto lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+      <div className="flex items-center justify-center">
+        <img src={rpaLight} alt="react-perfect-authentication" className="scale-90 rounded-lg" />
+      </div>
+      <div className="flex items-center justify-center">
+        {showOtpForm ? (
+          <OtpForm form={form} setShowOtpForm={setShowOtpForm} />
+        ) : (
+          <LoginForm form={form} setShowOtpForm={setShowOtpForm} />
+        )}
+      </div>
     </div>
   );
 }
