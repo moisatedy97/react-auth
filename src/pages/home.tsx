@@ -1,7 +1,9 @@
+import React from "react";
+import { observer } from "mobx-react-lite";
+
 import { cn, getStatusColor } from "@/lib/utils";
 import { authStore } from "@/store/auth-store";
-import { observer } from "mobx-react-lite";
-import React from "react";
+
 import AppInfo from "./home/app-info";
 import Logout from "./home/logout";
 import PokemonCrud from "./home/pokemon-crud";
@@ -16,7 +18,7 @@ function Home(): React.JSX.Element {
           <div className={cn("mr-4 h-4 w-4 rounded-full", getStatusColor(user.status))} />
           <h1>
             <span className="text-4xl font-bold italic">Welcome, </span>
-            <span className="text-4xl font-bold">{user.firstName.length > 0 ? user.firstName : user.email}</span>
+            <span className="text-4xl font-bold">{user.firstName ? user.firstName : user.email}</span>
           </h1>
           <Logout />
         </div>

@@ -10,7 +10,7 @@ import OtpForm from "./login/otp-form";
 
 export const formSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6, { message: "Password must be at least 6 characters long" })
+  password: z.string().min(5, { message: "Password must be at least 5 characters long" })
 });
 
 function Login(): React.JSX.Element {

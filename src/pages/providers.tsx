@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 
 import AuthProvider from "@/components/auth-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const queryClient = new QueryClient();
 
@@ -10,7 +11,9 @@ function Providers({ children }: { children: React.ReactNode }): React.JSX.Eleme
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <BrowserRouter>{children}</BrowserRouter>
+        <TooltipProvider>
+          <BrowserRouter>{children}</BrowserRouter>
+        </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
