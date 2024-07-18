@@ -1,5 +1,7 @@
-import { InfoIcon } from "lucide-react";
 import React from "react";
+import { InfoIcon } from "lucide-react";
+
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 function AppInfo(): React.JSX.Element {
   return (
@@ -14,7 +16,15 @@ function AppInfo(): React.JSX.Element {
             As a user you can only "read" the existing Pokemons. Here's a MODERATOR account to try out the "create"
             action too.
           </span>
-          <InfoIcon className="size-6 cursor-pointer" />
+          <Tooltip>
+            <TooltipTrigger>
+              <InfoIcon className="size-6 cursor-pointer" />
+            </TooltipTrigger>
+            <TooltipContent className="flex flex-col gap-1">
+              <span>username: admin@admin.com</span>
+              <span>password: admin</span>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
     </div>

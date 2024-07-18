@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
 import React from "react";
+import { LogOut } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 function Logout(): React.JSX.Element {
   const handleClick = () => {

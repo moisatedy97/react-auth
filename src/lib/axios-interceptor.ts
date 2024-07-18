@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import { toast } from "sonner";
 
 import { authStore } from "@/store/auth-store";
 
 import { User } from "./interfaces";
-import { toast } from "sonner";
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: "http://localhost:8081",

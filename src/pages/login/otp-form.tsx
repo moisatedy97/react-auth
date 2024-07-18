@@ -13,8 +13,8 @@ import { axiosInstance } from "@/lib/axios-interceptor";
 import { LoginResponse } from "@/lib/interfaces";
 import { authStore } from "@/store/auth-store";
 
-import { formSchema } from "../login";
 import logo from "../../assets/logo.svg";
+import { formSchema } from "../login";
 
 function OtpForm({
   form,

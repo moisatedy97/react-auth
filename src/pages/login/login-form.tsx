@@ -11,10 +11,10 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { axiosInstance } from "@/lib/axios-interceptor";
 import { LoginResponse } from "@/lib/interfaces";
-
-import { formSchema } from "../login";
-import logo from "../../assets/logo.svg";
 import { authStore } from "@/store/auth-store";
+
+import logo from "../../assets/logo.svg";
+import { formSchema } from "../login";
 
 function LoginForm({
   form,
