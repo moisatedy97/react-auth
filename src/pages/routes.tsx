@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes as RouterRoutes } from "react-router-dom";
+import { Navigate, Route, Routes as RouterRoutes } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { authStore } from "@/store/auth-store";
@@ -7,26 +7,29 @@ import { authStore } from "@/store/auth-store";
 import Home from "./home";
 import Login from "./login";
 import NotFound from "./not-found";
+import Register from "./register";
 
 function Routes(): React.JSX.Element | undefined {
-  let returnElement: React.ReactNode = undefined;
-
   if (authStore.isAuthenticated === undefined) {
     return undefined;
   }
 
-  if (authStore.isAuthenticated) {
-    returnElement = (
-      <RouterRoutes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </RouterRoutes>
-    );
-  } else {
-    returnElement = <Login />;
-  }
-
-  return returnElement;
+  return (
+    <RouterRoutes>
+      {authStore.isAuthenticated ? (
+        <>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </>
+      ) : (
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </>
+      )}
+    </RouterRoutes>
+  );
 }
 
 export default observer(Routes);
