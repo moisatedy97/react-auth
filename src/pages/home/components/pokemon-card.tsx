@@ -1,8 +1,10 @@
 import React from "react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Pokemon } from "@/lib/interfaces";
+
+import PokemonDelete from "./pokemon-delete";
+import PokemonUpdate from "./pokemon-update";
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }): React.JSX.Element {
   return (
@@ -25,8 +27,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }): React.JSX.Element {
         <PokemonStats pokemon={pokemon} />
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
+        <PokemonDelete pokemon={pokemon} />
+        <PokemonUpdate pokemon={pokemon} />
       </CardFooter>
     </Card>
   );
