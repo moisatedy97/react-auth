@@ -13,7 +13,7 @@ function Home(): React.JSX.Element {
 
   if (user) {
     return (
-      <div className="p-10">
+      <div className="w-full overflow-auto p-10">
         <div className="flex items-center">
           <div className={cn("mr-4 h-4 w-4 rounded-full", getStatusColor(user.status))} />
           <h1>

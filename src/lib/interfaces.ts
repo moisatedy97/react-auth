@@ -31,3 +31,18 @@ export interface LoginResponse {
   user: User;
   token: string;
 }
+
+export interface Pokemon {
+  id: number;
+  name: string;
+  type1?: string;
+  type2?: string;
+  image?: string;
+  hp?: number;
+  abilities?: string;
+  attack?: string;
+  defense?: string;
+  speed?: string;
+  specialAttack?: string;
+  specialDefense?: string;
+}

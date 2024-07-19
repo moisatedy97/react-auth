@@ -54,15 +54,11 @@ const Roles = (): React.JSX.Element => {
   return (
     <div className="flex flex-col gap-4">
       <p className="font-semibold">As you noticed every user has a role. Those roles are:</p>
-      <div className="grid grid-cols-2">
+      <div className="grid w-max grid-cols-2 justify-items-start gap-2">
         <span className="font-semibold text-gray-500/60">ADMIN</span>
         <span className="font-bold">READ, CREATE, UPDATE, DELETE</span>
-      </div>
-      <div className="grid grid-cols-2">
         <span className="font-semibold text-gray-500/60">MODERATOR</span>
         <span className="font-bold">READ, CREATE</span>
-      </div>
-      <div className="grid grid-cols-2">
         <span className="font-semibold text-gray-500/60">USER</span>
         <span className="font-bold">READ</span>
       </div>
