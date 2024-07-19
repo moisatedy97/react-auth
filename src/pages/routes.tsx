@@ -6,6 +6,7 @@ import { authStore } from "@/store/auth-store";
 
 import Home from "./home";
 import Login from "./login";
+import NotFound from "./not-found";
 
 function Routes(): React.JSX.Element | undefined {
   let returnElement: React.ReactNode = undefined;
@@ -18,6 +19,7 @@ function Routes(): React.JSX.Element | undefined {
     returnElement = (
       <RouterRoutes>
         <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </RouterRoutes>
     );
   } else {
