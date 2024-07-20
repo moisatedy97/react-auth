@@ -5,6 +5,9 @@ import { Pokemon } from "@/lib/interfaces";
 
 import PokemonDelete from "./pokemon-delete";
 import PokemonUpdate from "./pokemon-update";
+import { observer } from "mobx-react-lite";
+import { authStore } from "@/store/auth-store";
+import { ROLES } from "@/lib/constants";
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }): React.JSX.Element {
   return (
@@ -26,15 +29,17 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }): React.JSX.Element {
         <PokemonAbilities pokemon={pokemon} />
         <PokemonStats pokemon={pokemon} />
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <PokemonDelete pokemon={pokemon} />
-        <PokemonUpdate pokemon={pokemon} />
-      </CardFooter>
+      {authStore.user?.role === ROLES.ADMIN && (
+        <CardFooter className="flex justify-between">
+          <PokemonDelete pokemon={pokemon} />
+          <PokemonUpdate pokemon={pokemon} />
+        </CardFooter>
+      )}
     </Card>
   );
 }
 
-export default PokemonCard;
+export default observer(PokemonCard);
 
 const PokemonType = ({ pokemon }: { pokemon: Pokemon }): React.JSX.Element => {
   return (

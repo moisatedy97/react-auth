@@ -15,6 +15,8 @@ import { authStore } from "@/store/auth-store";
 
 import logo from "../../assets/logo.svg";
 import { formSchema } from "../login";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/lib/constants";
 
 function OtpForm({
   form,
@@ -23,6 +25,7 @@ function OtpForm({
   form: UseFormReturn<z.infer<typeof formSchema>>;
   setShowOtpForm: React.Dispatch<React.SetStateAction<boolean>>;
 }): React.JSX.Element {
+  const navigation = useNavigate();
   const [value, setValue] = React.useState("");
   const mutation = useMutation({
     mutationFn: async (formData: z.infer<typeof formSchema>) => {
@@ -39,6 +42,7 @@ function OtpForm({
       const { data } = response;
 
       setShowOtpForm(false);
+      navigation(ROUTES.HOME);
       authStore.authenticateUser(data.user, data.token);
 
       toast.success("Successfully logged in!");
