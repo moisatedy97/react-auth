@@ -29,7 +29,7 @@ function PokemonCrud(): React.JSX.Element {
   }
 
   return (
-    <div className="m-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+    <div className="m-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:m-10 lg:grid-cols-3">
       {data?.map((pokemon: Pokemon) => <PokemonCard key={`${pokemon.id}`} pokemon={pokemon} />)}
       <PokemonCreate />
     </div>

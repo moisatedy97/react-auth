@@ -1,6 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -15,6 +15,7 @@ import { authStore } from "@/store/auth-store";
 
 import logo from "../../assets/logo.svg";
 import { formSchema } from "../login";
+import { ROUTES } from "@/lib/constants";
 
 function LoginForm({
   form,
@@ -23,6 +24,7 @@ function LoginForm({
   form: UseFormReturn<z.infer<typeof formSchema>>;
   setShowOtpForm: React.Dispatch<React.SetStateAction<boolean>>;
 }): React.JSX.Element {
+  const navigator = useNavigate();
   const mutation = useMutation({
     mutationFn: async (formData: z.infer<typeof formSchema>) => {
       const response = await axiosInstance.get<LoginResponse>("/auth/login", {
@@ -41,6 +43,7 @@ function LoginForm({
         const { data } = response;
 
         authStore.authenticateUser(data.user, data.token);
+        navigator(ROUTES.HOME);
 
         toast.success("Successfully logged in!");
       }
@@ -106,7 +109,7 @@ function LoginForm({
         </Form>
         <div className="text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link to="/register" className="underline">
+          <Link to={ROUTES.REGISTER} className="underline">
             Sign up
           </Link>
         </div>

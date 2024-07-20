@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { axiosInstance } from "@/lib/axios-interceptor";
 
 import logo from "../assets/logo.svg";
+import { ROUTES } from "@/lib/constants";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters long" }),
@@ -37,7 +38,7 @@ function Register(): React.JSX.Element {
     },
     onSuccess: (response) => {
       if (response.status === 201) {
-        navigation("/login");
+        navigation(ROUTES.LOGIN);
         toast.success("Successfully registered!");
       }
     }

@@ -9,16 +9,17 @@ function AppInfo(): React.JSX.Element {
       <Description />
       <Roles />
       <div>
-        <p className="font-semibold">Below you can try out the authorization by interacting with the Pokemon CRUD.</p>
-        <div className="flex items-center gap-2 font-semibold text-gray-500/60">
-          <span>Note:</span>
-          <span>
-            As a user you can only "read" the existing Pokemons. Here's a MODERATOR account to try out the "create"
-            action too.
+        <p className="text-sm font-semibold lg:text-base">
+          Below you can try out the authorization by interacting with the Pokemon CRUD.
+        </p>
+        <div className="mt-2 flex items-center gap-2 font-semibold text-gray-500/60">
+          <span className="text-xs font-semibold lg:text-sm">
+            Note: As a user you can only "read" the existing Pokemons. Here's a MODERATOR account to try out the
+            "create" action too.
           </span>
           <Tooltip>
             <TooltipTrigger>
-              <InfoIcon className="size-6 cursor-pointer" />
+              <InfoIcon className="size-4 cursor-pointer lg:size-6" />
             </TooltipTrigger>
             <TooltipContent className="flex flex-col gap-1">
               <span>username: admin@admin.com</span>
@@ -36,16 +37,12 @@ export default AppInfo;
 const Description = (): React.JSX.Element => {
   return (
     <div>
-      <p className="font-semibold">Welcome to my authentication server.</p>
-      <p className="font-semibold">This is a showcase of how I implement authorization in a React application.</p>
-      <p className="font-semibold">
-        Many say that authentication and authorization is the hardest part of building a web application.
+      <p className="text-sm font-semibold lg:text-base">
+        Welcome to my authentication server. This is a showcase of how I implement authorization in a React application.
+        Many say that authentication and authorization is the hardest part of building a web application. So I studied
+        how to do it right especially in a React application. how to do it right especially in a React application. Now
+        it's time for the authorization part.
       </p>
-      <p className="font-semibold">So I studied how to do it right especially in a React application.</p>
-      <p className="font-semibold">
-        You already witnessed the authentication part where you login with credentials and OTP code.
-      </p>
-      <p className="font-semibold">Now it's time for the authorization part.</p>
     </div>
   );
 };
@@ -53,14 +50,14 @@ const Description = (): React.JSX.Element => {
 const Roles = (): React.JSX.Element => {
   return (
     <div className="flex flex-col gap-4">
-      <p className="font-semibold">As you noticed every user has a role. Those roles are:</p>
-      <div className="grid w-max grid-cols-2 justify-items-start gap-2">
-        <span className="font-semibold text-gray-500/60">ADMIN</span>
-        <span className="font-bold">READ, CREATE, UPDATE, DELETE</span>
-        <span className="font-semibold text-gray-500/60">MODERATOR</span>
-        <span className="font-bold">READ, CREATE</span>
-        <span className="font-semibold text-gray-500/60">USER</span>
-        <span className="font-bold">READ</span>
+      <p className="text-sm font-semibold lg:text-base">As you noticed every user has a role. Those roles are:</p>
+      <div className="grid w-full grid-cols-2 justify-items-start gap-2 lg:w-max">
+        <span className="text-sm font-semibold text-gray-500/60 lg:text-base">ADMIN</span>
+        <span className="text-sm font-bold lg:text-base">READ, CREATE, UPDATE, DELETE</span>
+        <span className="text-sm font-semibold text-gray-500/60 lg:text-base">MODERATOR</span>
+        <span className="text-sm font-bold lg:text-base">READ, CREATE</span>
+        <span className="text-sm font-semibold text-gray-500/60 lg:text-base">USER</span>
+        <span className="text-sm font-bold lg:text-base">READ</span>
       </div>
     </div>
   );

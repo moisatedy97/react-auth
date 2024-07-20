@@ -8,6 +8,7 @@ import Home from "./home";
 import Login from "./login";
 import NotFound from "./not-found";
 import Register from "./register";
+import { ROUTES } from "@/lib/constants";
 
 function Routes(): React.JSX.Element | undefined {
   if (authStore.isAuthenticated === undefined) {
@@ -18,14 +19,14 @@ function Routes(): React.JSX.Element | undefined {
     <RouterRoutes>
       {authStore.isAuthenticated ? (
         <>
-          <Route path="/" element={<Home />} />
+          <Route path={ROUTES.HOME} element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </>
       ) : (
         <>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route path={ROUTES.REGISTER} element={<Register />} />
+          <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
         </>
       )}
     </RouterRoutes>

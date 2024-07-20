@@ -7,18 +7,24 @@ import { authStore } from "@/store/auth-store";
 import AppInfo from "./home/app-info";
 import Logout from "./home/logout";
 import PokemonCrud from "./home/pokemon-crud";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 function Home(): React.JSX.Element {
   const { user } = authStore;
 
   if (user) {
     return (
-      <div className="w-full overflow-auto p-10">
+      <div className="w-full overflow-auto p-4 lg:p-10">
         <div className="flex items-center">
-          <div className={cn("mr-4 h-4 w-4 rounded-full", getStatusColor(user.status))} />
+          <Tooltip>
+            <TooltipTrigger>
+              <div className={cn("mr-4 size-2 rounded-full lg:size-4", getStatusColor(user.status))} />
+            </TooltipTrigger>
+            <TooltipContent className={cn("font-bold")}>{user.status}</TooltipContent>
+          </Tooltip>
           <h1>
-            <span className="text-4xl font-bold italic">Welcome, </span>
-            <span className="text-4xl font-bold">{user.firstName ? user.firstName : user.email}</span>
+            <span className="text-3xl font-bold italic lg:text-4xl">Welcome, </span>
+            <span className="text-3xl font-bold lg:text-4xl">{user.firstName ? user.firstName : user.email}</span>
           </h1>
           <Logout />
         </div>

@@ -36,6 +36,7 @@ function PokemonCreate(): React.JSX.Element {
         return [];
       });
 
+      form.reset();
       setOpen(false);
       toast.success(`Pokemon ${data.name} created successfully!`);
     }
