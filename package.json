@@ -14,7 +14,7 @@
     "format": "eslint . --ext .js,.jsx,.ts,.tsx --quiet && prettier --check --ignore-path .gitignore .",
     "format:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix && prettier --write --ignore-path .gitignore .",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "if command -v husky; then husky install; fi"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -58,7 +58,6 @@
     "eslint-plugin-regexp": "^2.3.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "eslint-plugin-unused-imports": "^3.1.0",
-    "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
     "prettier-plugin-tailwindcss": "^0.6.5",
