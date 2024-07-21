@@ -46,6 +46,7 @@ jobs:
             docker run -d \
               -e VITE_APP_NAME=${{ secrets.VITE_APP_NAME }} \
               -e VITE_BACKEND_ENDPOINT=${{ secrets.VITE_BACKEND_ENDPOINT }} \
+              -p 3031:80 \
               --name react-auth-container \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             exit
