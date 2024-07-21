@@ -39,19 +39,17 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy to VPS
     needs: build
 
     steps:
-      - name: Deploy to VPS
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Install SSH key
         run: |
-          ssh -i <(echo "$SSH_PRIVATE_KEY") -o StrictHostKeyChecking=no "$VPS_USER@$VPS_HOST" << 'EOF'
-            docker pull $DOCKER_USERNAME/react-app:latest
-            docker stop react-app || true
-            docker rm react-app || true
-            docker run -d -p 80:5000 --name react-app $DOCKER_USERNAME/react-app:latest
-          EOF
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} > ~/.ssh/known_hosts
+      - name: Connect and pull
+        run: ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "docker pull ${{ secrets.DOCKER_USERNAME }}/react-app:latest && docker stop react-app || true && docker rm react-app || true && docker run -d -p 3031:80 -e VITE_APP_NAME=${{ secrets.VITE_APP_NAME }} -e VITE_BACKEND_ENDPOINT=${{ secrets.VITE_BACKEND_ENDPOINT }} --name react-auth-container ${{ secrets.DOCKER_USERNAME }}/react-app:latest"
+
+      - name: Clean SSH key
+        run: rm -rf ~/.ssh
