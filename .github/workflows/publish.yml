@@ -42,6 +42,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             docker stop react-auth-container || true
             docker rm react-auth-container || true
+            docker image rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} || true
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             docker run -d \
               -e VITE_APP_NAME=${{ secrets.VITE_APP_NAME }} \
