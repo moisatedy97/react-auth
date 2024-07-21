@@ -13,8 +13,7 @@
     "lint-staged": "lint-staged",
     "format": "eslint . --ext .js,.jsx,.ts,.tsx --quiet && prettier --check --ignore-path .gitignore .",
     "format:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix && prettier --write --ignore-path .gitignore .",
-    "preview": "vite preview",
-    "prepare": "if command -v husky; then husky install; fi"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
