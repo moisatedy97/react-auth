@@ -22,7 +22,7 @@ function AppInfo(): React.JSX.Element {
               <InfoIcon className="size-4 cursor-pointer lg:size-6" />
             </TooltipTrigger>
             <TooltipContent className="flex flex-col gap-1">
-              <span>username: admin@admin.com</span>
+              <span>username: admin@example.com</span>
               <span>password: admin</span>
             </TooltipContent>
           </Tooltip>
