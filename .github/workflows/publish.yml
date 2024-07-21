@@ -38,6 +38,6 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       - name: Connect to Server
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker run -d -e VITE_APP_NAME=${{secrets.VITE_APP_NAME}} -e VITE_BACKEND_ENDPOINT=${{secrets.VITE_BACKEND_ENDPOINT}} --name react-auth-container ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} && exit"
       - name: Clean SSH Key
         run: rm -rf ~/.ssh
